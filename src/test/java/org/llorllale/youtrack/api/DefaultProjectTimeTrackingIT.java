@@ -17,11 +17,11 @@
 package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (1 lines)
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.apache.http.impl.client.HttpClients;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.session.Login;
 import org.llorllale.youtrack.api.session.PermanentToken;
 
@@ -40,7 +40,7 @@ public final class DefaultProjectTimeTrackingIT {
    * Setup.
    * @throws Exception unexpected
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() throws Exception {
     final IntegrationTestsConfig config = new IntegrationTestsConfig();
     login = new PermanentToken(config.youtrackUrl(), config.youtrackUserToken());

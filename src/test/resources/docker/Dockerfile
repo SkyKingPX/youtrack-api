@@ -14,9 +14,11 @@
 # limitations under the License.
 #
 
-FROM java:8-jre 
+FROM eclipse-temurin:21.0.9_10-jre
 
-RUN mkdir -p /opt/youtrack/data /opt/youtrack/backup /opt/youtrack/bin
+RUN mkdir -p -m 750 /opt/youtrack/data /opt/youtrack/backups /opt/youtrack/logs /opt/youtrack/conf
+
+RUN sudo chown -R 13001:13001 /opt/youtrack/data /opt/youtrack/backups /opt/youtrack/logs /opt/youtrack/conf
 
 COPY youtrack/data /opt/youtrack/data
 

@@ -18,18 +18,19 @@ package org.llorllale.youtrack.api.mock.http.response;
 
 import java.io.IOException;
 import java.util.Locale;
+
 import org.apache.http.Header;
-import org.apache.http.HeaderIterator;
 import org.apache.http.HttpEntity;
 import org.apache.http.ProtocolVersion;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.message.BasicHeaderIterator;
 import org.apache.http.message.BasicStatusLine;
 import org.apache.http.params.HttpParams;
 
 /**
- * Mock implementation of {@link HttpReponse} suitable for unit tests. Simulates an HTTP response
- * with code 403.
+ * Mock implementation of {@link org.apache.http.HttpResponse} suitable for unit tests.
+ * Simulates an HTTP response with code 403.
  * @author George Aristy (george.aristy@gmail.com)
  * @since 0.4.0
  */
@@ -167,12 +168,12 @@ public final class MockForbiddenResponse implements CloseableHttpResponse {
   }
 
   @Override
-  public HeaderIterator headerIterator() {
+  public BasicHeaderIterator headerIterator() {
     throw new UnsupportedOperationException("Not supported yet.");
   }
 
   @Override
-  public HeaderIterator headerIterator(String name) {
+  public BasicHeaderIterator headerIterator(String name) {
     throw new UnsupportedOperationException("Not supported yet.");
   }
 
@@ -182,7 +183,7 @@ public final class MockForbiddenResponse implements CloseableHttpResponse {
   }
 
   @Override
-  public void setParams(HttpParams params) {
+  public void setParams(HttpParams httpParams) {
     throw new UnsupportedOperationException("Not supported yet.");
   }
 

@@ -16,12 +16,13 @@
 
 package org.llorllale.youtrack.api;
 
-// @checkstyle AvoidStaticImport (1 lines)
-import static org.junit.Assert.assertThat;
+// @checkstyle AvoidStaticImport (2 lines)
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 import java.io.IOException;
 import org.hamcrest.core.IsEqual;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.mock.http.MockSession;
 import org.llorllale.youtrack.api.session.AuthenticationException;
 import org.llorllale.youtrack.api.session.Login;
@@ -56,21 +57,21 @@ public final class CachedLoginTest {
    * Propagates the origin's authentication error.
    * @throws Exception auth error
    */
-  @Test(expected = AuthenticationException.class)
+  @Test
   public void propagatesAuthException() throws Exception {
-    new CachedLogin(() -> {
+    assertThrowsExactly(AuthenticationException.class, () -> new CachedLogin(() -> {
       throw new AuthenticationException(null);
-    }).session();
+    }).session());
   }
 
   /**
    * Propagates the origin's io error.
    * @throws Exception io error
    */
-  @Test(expected = IOException.class)
+  @Test
   public void propagatesIoException() throws Exception {
-    new CachedLogin(() -> {
+    assertThrowsExactly(IOException.class, () -> new CachedLogin(() -> {
       throw new IOException();
-    }).session();
+    }).session());
   }
 }

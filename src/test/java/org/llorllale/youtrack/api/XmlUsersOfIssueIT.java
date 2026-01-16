@@ -18,10 +18,10 @@ package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (2 lines)
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.mock.MockUser;
 import org.llorllale.youtrack.api.session.Login;
 import org.llorllale.youtrack.api.session.PermanentToken;
@@ -42,7 +42,7 @@ public final class XmlUsersOfIssueIT {
    * Setup.
    * @throws Exception unexpected
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() throws Exception {
     config = new IntegrationTestsConfig();
     login = new PermanentToken(

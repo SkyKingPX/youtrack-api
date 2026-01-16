@@ -17,10 +17,10 @@
 package org.llorllale.youtrack.api.session;
 
 // @checkstyle AvoidStaticImport (1 line)
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.net.URL;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link Anonymous}.

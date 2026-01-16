@@ -16,9 +16,12 @@
 
 package org.llorllale.youtrack.api;
 
+// @checkstyle AvoidStaticImport (1 lines)
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+
 import java.io.UncheckedIOException;
 import java.net.URL;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link UncheckedUriBuilder}.
@@ -31,9 +34,11 @@ public final class UncheckedUriBuilderTest {
    * Invalid URIs should be wrapped in an {@link UncheckedIOException}.
    * @since 1.0.0
    */
-  @Test(expected = UncheckedIOException.class)
+  @Test
   public void ctorStringUncheckedThrowWithInvalidUri() {
-    new UncheckedUriBuilder("invalid.uri.\"");
+    assertThrowsExactly(UncheckedIOException.class, () ->
+            new UncheckedUriBuilder("invalid.uri.\"")
+    );
   }
 
   /**
@@ -41,8 +46,10 @@ public final class UncheckedUriBuilderTest {
    * @throws Exception unexpected
    * @since 1.0.0
    */
-  @Test(expected = UncheckedIOException.class)
+  @Test
   public void ctorUrlPathUncheckedThrowWithInvalidUri() throws Exception {
-    new UncheckedUriBuilder(new URL("http://localhost"), "invalid");
+    assertThrowsExactly(UncheckedIOException.class, () ->
+            new UncheckedUriBuilder(new URL("http://localhost"), "invalid")
+    );
   }
 }

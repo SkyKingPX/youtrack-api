@@ -16,8 +16,11 @@
 
 package org.llorllale.youtrack.api;
 
+// @checkstyle AvoidStaticImport (1 lines)
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+
 import java.io.IOException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.mock.http.response.MockInternalErrorResponse;
 
 /**
@@ -34,8 +37,9 @@ public final class InternalServerErrorResponseTest {
    * @throws Exception unexpected
    * @since 1.0.0
    */
-  @Test(expected = IOException.class)
+  @Test
   public void testHttpResponse() throws Exception {
-    new InternalServerErrorResponse(() -> new MockInternalErrorResponse()).httpResponse();
+    assertThrowsExactly(IOException.class, () ->
+            new InternalServerErrorResponse(() -> new MockInternalErrorResponse()).httpResponse());
   }
 }

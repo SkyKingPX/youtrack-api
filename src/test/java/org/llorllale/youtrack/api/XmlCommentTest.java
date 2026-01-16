@@ -18,12 +18,12 @@ package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (2 lines)
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.time.Instant;
 import org.apache.http.impl.client.HttpClients;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.mock.MockIssue;
 import org.llorllale.youtrack.api.mock.MockLogin;
 import org.llorllale.youtrack.api.mock.MockProject;
@@ -50,7 +50,7 @@ public final class XmlCommentTest {
    * Setup.
    * @throws Exception unexpected
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() throws Exception {
     xmlObject = new XmlOf(new StringAsDocument(XML));
   }

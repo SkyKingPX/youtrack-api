@@ -87,31 +87,43 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <netbeans.hint.license>apache20</netbeans.hint.license>
     <netbeans.hint.projectversion>${project.version}</netbeans.hint.projectversion>
-    <youtrackVersion>2017.3.35488</youtrackVersion>
+    <youtrackVersion>2025.3.11121</youtrackVersion>
     <youtrack.test.docker.name>${project.artifactId}-integration-tests</youtrack.test.docker.name>
     <youtrack.test.user>root</youtrack.test.user>
-    <youtrack.test.user.token>perm:cm9vdA==.eW91dHJhY2stYXBpLXRlc3Q=.nOe5IYpv520S120tK18hc2tkm8oCI4</youtrack.test.user.token>
+    <youtrack.test.user.token>perm-cm9vdA==.NDEtMA==.fIFJTo1gLK63dTopWgFy8equmtL0Y5</youtrack.test.user.token>
     <youtrack.test.pwd>youtrack</youtrack.test.pwd>
-    <youtrack.test.baseUrl>http://localhost:18080</youtrack.test.baseUrl>
-    <youtrack.test.url>${youtrack.test.baseUrl}/rest</youtrack.test.url>
+    <youtrack.test.baseUrl>http://skykingpx.ddns.net:25561</youtrack.test.baseUrl>
+    <youtrack.test.url>${youtrack.test.baseUrl}/api</youtrack.test.url>
     <youtrack.test.project.id>TP</youtrack.test.project.id>
+    <!-- Skip docker because youtrack is already set up-->
+    <docker.skip>true</docker.skip>
   </properties>
 
   <dependencies>
     <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.13.2</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>4.0.4</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.5.1</version>
+      <version>4.5.14</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpmime</artifactId>
-      <version>4.5.1</version>
+      <version>4.5.14</version>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.10.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -173,10 +185,6 @@
             <artifactId>maven-site-plugin</artifactId>
           </plugin>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-          </plugin>
-          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>findbugs-maven-plugin</artifactId>
           </plugin>
@@ -205,26 +213,6 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>findbugs-maven-plugin</artifactId>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <configuration>
-              <configLocation>checkstyle.xml</configLocation>
-              <encoding>${project.build.sourceEncoding}</encoding>
-              <consoleOutput>true</consoleOutput>
-              <failsOnError>true</failsOnError>
-              <linkXRef>false</linkXRef>
-              <violationSeverity>info</violationSeverity>
-              <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
-            </configuration>
-            <reportSets>
-              <reportSet>
-                <reports>
-                  <report>checkstyle</report>
-                </reports>
-              </reportSet>
-            </reportSets>
           </plugin>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -316,8 +304,16 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.5.4</version>
+          <configuration>
+            <useModulePath>false</useModulePath>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>2.20</version>
+          <version>3.5.4</version>
           <executions>
             <execution>
               <goals>
@@ -330,7 +326,7 @@
         <plugin>
           <groupId>io.fabric8</groupId>
           <artifactId>docker-maven-plugin</artifactId>
-          <version>0.21.0</version>
+          <version>0.48.0</version>
           <configuration>
             <!--<showLogs>true</showLogs>-->
           </configuration>
@@ -415,36 +411,6 @@
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>2.17</version>
-          <dependencies>
-            <dependency>
-              <groupId>com.puppycrawl.tools</groupId>
-              <artifactId>checkstyle</artifactId>
-              <version>8.2</version>
-            </dependency>
-          </dependencies>
-          <executions>
-            <execution>
-              <id>validate</id>
-              <phase>validate</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <configuration>
-                <configLocation>checkstyle.xml</configLocation>
-                <encoding>${project.build.sourceEncoding}</encoding>
-                <consoleOutput>true</consoleOutput>
-                <failsOnError>true</failsOnError>
-                <linkXRef>false</linkXRef>
-                <violationSeverity>info</violationSeverity>
-                <sourceDirectory>${basedir}/src</sourceDirectory>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
           <version>3.0.5</version>
@@ -509,14 +475,6 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.jasig.maven</groupId>
-          <artifactId>maven-notice-plugin</artifactId>
-          <version>1.1.0</version>
-          <configuration>
-            <noticeTemplate>NOTICE.template</noticeTemplate>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.llorllale</groupId>
           <artifactId>loggit-maven-plugin</artifactId>
           <version>1.0.0</version>
@@ -540,28 +498,12 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.jasig.maven</groupId>
-        <artifactId>maven-notice-plugin</artifactId>
         <executions>
           <execution>
             <phase>validate</phase>

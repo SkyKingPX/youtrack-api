@@ -17,17 +17,17 @@
 package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (3 lines)
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.hamcrest.core.IsEqual;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.session.Login;
 import org.llorllale.youtrack.api.session.PermanentToken;
 
@@ -46,7 +46,7 @@ public final class DefaultProjectsIT {
    * Setup.
    * @throws Exception unexpected
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() throws Exception {
     config = new IntegrationTestsConfig();
     login = new PermanentToken(

@@ -17,14 +17,14 @@
 package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (1 line)
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.IOException;
 import java.util.function.Supplier;
 
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.llorllale.cactoos.matchers.RunsInThreads;
 import org.llorllale.youtrack.api.http.Client;
 import org.llorllale.youtrack.api.http.Pooled;

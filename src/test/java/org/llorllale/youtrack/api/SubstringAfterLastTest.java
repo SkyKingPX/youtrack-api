@@ -18,9 +18,9 @@ package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (2 lines)
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link SubstringAfterLast}.

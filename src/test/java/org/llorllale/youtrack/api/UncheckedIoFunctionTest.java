@@ -16,13 +16,14 @@
 
 package org.llorllale.youtrack.api;
 
-// @checkstyle AvoidStaticImport (2 lines)
+// @checkstyle AvoidStaticImport (3 lines)
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link UncheckedIoFunction}.
@@ -49,10 +50,12 @@ public final class UncheckedIoFunctionTest {
    * Wraps the IOException in an UncheckedIOException.
    * @since 1.0.0
    */
-  @Test(expected = UncheckedIOException.class)
+  @Test
   public void wrapsUnchecksIoException() {
-    new UncheckedIoFunction<>(e -> {
-      throw new IOException();
-    }).apply("test");
+    assertThrowsExactly(UncheckedIOException.class, () ->
+              new UncheckedIoFunction<>(e -> {
+                throw new IOException();
+              }).apply("test")
+    );
   }
 }

@@ -17,7 +17,7 @@
 package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (1 line)
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -25,8 +25,8 @@ import java.util.UUID;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.HttpClients;
 import org.hamcrest.core.IsEqual;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.session.Login;
 import org.llorllale.youtrack.api.session.PermanentToken;
 
@@ -48,7 +48,7 @@ public final class DefaultAttachmentsIT {
    * @throws Exception unexpected
    * @since 1.1.0
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() throws Exception {
     config = new IntegrationTestsConfig();
     login = new PermanentToken(

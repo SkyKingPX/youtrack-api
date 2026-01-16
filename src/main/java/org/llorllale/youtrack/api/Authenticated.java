@@ -19,6 +19,7 @@ package org.llorllale.youtrack.api;
 import java.net.URI;
 
 import org.apache.http.Header;
+
 import org.apache.http.HeaderIterator;
 import org.apache.http.HttpEntity;
 import org.apache.http.ProtocolVersion;

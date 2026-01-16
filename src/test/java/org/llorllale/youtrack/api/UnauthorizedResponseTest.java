@@ -16,7 +16,10 @@
 
 package org.llorllale.youtrack.api;
 
-import org.junit.Test;
+// @checkstyle AvoidStaticImport (1 lines)
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.mock.http.response.MockUnauthorizedResponse;
 import org.llorllale.youtrack.api.session.UnauthorizedException;
 
@@ -32,8 +35,10 @@ public final class UnauthorizedResponseTest {
    * @throws Exception the UnauthorizedException
    * @since 1.0.0
    */
-  @Test(expected = UnauthorizedException.class)
+  @Test
   public void testHttpResponse() throws Exception {
-    new UnauthorizedResponse(() -> new MockUnauthorizedResponse()).httpResponse();
+    assertThrowsExactly(UnauthorizedException.class, () ->
+            new UnauthorizedResponse(() -> new MockUnauthorizedResponse()).httpResponse()
+    );
   }
 }

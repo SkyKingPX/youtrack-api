@@ -18,10 +18,10 @@ package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (2 lines)
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link XmlUser}.
@@ -41,7 +41,7 @@ public final class XmlUserTest {
    * 
    * @throws Exception unexpected
    */
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws Exception {
     xml = new XmlOf(new StringAsDocument(USER));
   }

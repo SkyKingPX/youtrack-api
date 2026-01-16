@@ -18,11 +18,11 @@ package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (4 lines)
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.mock.MockField;
 import org.llorllale.youtrack.api.mock.MockFieldValue;
 import org.llorllale.youtrack.api.mock.MockProject;

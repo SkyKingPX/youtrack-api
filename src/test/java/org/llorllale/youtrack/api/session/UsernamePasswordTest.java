@@ -16,13 +16,14 @@
 
 package org.llorllale.youtrack.api.session;
 
-// @checkstyle AvoidStaticImport (2 lines)
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+// @checkstyle AvoidStaticImport (3 lines)
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.net.URL;
 import org.apache.http.message.BasicHeader;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.mock.http.MockHttpClient;
 import org.llorllale.youtrack.api.mock.http.response.MockForbiddenResponse;
 import org.llorllale.youtrack.api.mock.http.response.MockOkResponse;
@@ -61,16 +62,16 @@ public final class UsernamePasswordTest {
    * @throws Exception unexpected
    * @since 0.1.0
    */
-  @Test(expected = AuthenticationException.class)
+  @Test
   public void authenticationError() throws Exception {
-    new UsernamePassword(
-        new URL("http://some.url"),
-        "test",
-        "123".toCharArray(),
-        new MockHttpClient(
-            new MockForbiddenResponse()
-        )
-    ).session();
+    assertThrowsExactly(AuthenticationException.class, () -> new UsernamePassword(
+            new URL("http://some.url"),
+            "test",
+            "123".toCharArray(),
+            new MockHttpClient(
+                    new MockForbiddenResponse()
+            )
+    ).session());
   }
 
   /**

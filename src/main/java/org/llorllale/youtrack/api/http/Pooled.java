@@ -17,6 +17,7 @@
 package org.llorllale.youtrack.api.http;
 
 import java.util.function.Supplier;
+
 import org.apache.http.impl.client.HttpClientBuilder;
 
 /**

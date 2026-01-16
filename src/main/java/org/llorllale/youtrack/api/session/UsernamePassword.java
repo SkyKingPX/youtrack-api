@@ -36,7 +36,7 @@ import org.apache.http.client.utils.URIBuilder;
  */
 public final class UsernamePassword implements Login {
   private final URL youtrackUrl;
-  private final HttpClient httpClient;
+  private final org.apache.http.client.HttpClient httpClient;
   private final String username;
   private final char[] password;
 

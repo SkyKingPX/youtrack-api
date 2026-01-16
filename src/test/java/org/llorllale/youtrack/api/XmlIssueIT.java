@@ -17,7 +17,7 @@
 package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (1 line)
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -28,8 +28,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import org.hamcrest.core.IsEqual;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.llorllale.youtrack.api.http.Client;
 import org.llorllale.youtrack.api.http.Pooled;
 import org.llorllale.youtrack.api.session.Login;
@@ -50,7 +51,7 @@ public final class XmlIssueIT {
   /**
    * Setup.
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() {
     config = new IntegrationTestsConfig();
     login = new PermanentToken(
@@ -92,7 +93,8 @@ public final class XmlIssueIT {
    * @checkstyle MagicNumber (3 lines)
    */
   @SuppressWarnings("checkstyle:NPathComplexity")
-  @Test(timeout = 5000L)
+  @Test
+  @Timeout(5)
   public void canReadAttachmentsFromMultipleThreads() throws IOException {
     final Issue issue = new DefaultYouTrack(
       login, new Pooled(10, new Client())

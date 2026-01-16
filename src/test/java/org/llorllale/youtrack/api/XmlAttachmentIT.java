@@ -17,13 +17,13 @@
 package org.llorllale.youtrack.api;
 
 // @checkstyle AvoidStaticImport (1 line)
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.util.UUID;
 import org.hamcrest.core.IsEqual;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.llorllale.youtrack.api.http.Client;
 import org.llorllale.youtrack.api.http.Pooled;
 import org.llorllale.youtrack.api.session.Login;
@@ -46,7 +46,7 @@ public final class XmlAttachmentIT {
    * @throws Exception unexpected
    * @since 1.1.0
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() throws Exception {
     config = new IntegrationTestsConfig();
     login = new PermanentToken(
